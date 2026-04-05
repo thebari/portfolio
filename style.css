@@ -1,0 +1,356 @@
+:root {
+  --bg-color: #0d0d0d;
+  --text-color: #f7f7f7;
+  --font-main: 'Outfit', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+#transition-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#loader-content {
+  font-size: 3rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
+  z-index: 10;
+}
+
+#loader-content::before {
+  content: "•";
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* Main Content */
+#main {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  visibility: hidden; /* Revelado pelo GSAP */
+}
+
+/* Header */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  mix-blend-mode: difference;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 40px;
+  font-size: 1rem;
+  font-weight: 300;
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.5;
+}
+
+/* Hero Section */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0) 50%, rgba(13,13,13,0.9) 100%);
+  pointer-events: none;
+}
+
+.floating-badge {
+  position: absolute;
+  left: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(40, 40, 40, 0.4);
+  backdrop-filter: blur(15px);
+  padding: 15px 25px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 20;
+}
+
+.badge-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.badge-content span {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.globe {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-text {
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.role-text svg {
+  margin-bottom: 25px;
+}
+
+/* Marquee */
+.marquee {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 5;
+  padding-bottom: 2vh;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  will-change: transform;
+}
+
+.marquee-inner h1 {
+  font-size: 16vw;
+  font-weight: 500;
+  line-height: 1;
+  padding-right: 2vw;
+  color: var(--text-color);
+  letter-spacing: -0.04em;
+}
+
+/* Projects */
+#projects {
+  padding: 100px 60px;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+  color: #0d0d0d;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  z-index: 30;
+  position: relative;
+}
+
+#projects h2 {
+  font-size: 3.5rem;
+  margin-bottom: 60px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Footer */
+#contact {
+  padding: 15vw 60px 100px;
+  background-color: #050505;
+  color: #fff;
+  min-height: 80vh;
+  z-index: 10;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-curve {
+  position: absolute;
+  top: -10vw;
+  left: 0;
+  width: 100%;
+  height: 10vw;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.footer-intro {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.footer-hero-line {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  font-size: 5vw;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.footer-profile-pic {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.footer-arrow {
+  width: 5vw;
+  height: 5vw;
+  margin-left: 20px;
+}
+
+.footer-pill {
+  margin-top: auto;
+  background-color: #f2f2f2;
+  color: #111;
+  border-radius: 60px;
+  padding: 15px 20px 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.footer-email {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.footer-link:hover {
+  opacity: 0.6;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icon.github { background-color: #24292e; }
+.social-icon.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-icon.linkedin { background-color: #0077b5; }
+
+.social-icon:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.social-icon svg {
+  width: 24px;
+  height: 24px;
+}
