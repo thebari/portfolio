@@ -62,20 +62,18 @@ if (textElement) {
       .from(".marquee", { y: 50, opacity: 0, duration: 1, ease: "power3.out" }, "-=1");
       
     }, 2000); // 2 seconds delay
-
-    // --- Footer Curve Scroll Animation ---
-    gsap.to("#footer-curve-path", {
-      attr: { d: "M 0 0 Q 50 0 100 0 L 100 100 L 0 100 Z" },
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#contact",
-        start: "top bottom",
-        end: "bottom bottom",
-        scrub: true
-      }
-    });
-
   };
+
+  const updateFooterSpacer = () => {
+    const footer = document.getElementById("contact");
+    const main = document.getElementById("main");
+    if (footer && main) {
+      main.style.marginBottom = `${footer.offsetHeight}px`;
+    }
+  };
+  
+  window.addEventListener("resize", updateFooterSpacer);
+  setTimeout(updateFooterSpacer, 500); // Set initial margin
 
   if (document.readyState !== 'loading') {
     startAnimation();
