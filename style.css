@@ -88,7 +88,7 @@ header {
   z-index: 100;
 }
 
-nav {
+header nav {
   display: flex;
   gap: 45px;
   background: rgba(255, 255, 255, 0.05);
@@ -97,22 +97,49 @@ nav {
   padding: 15px 45px;
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2), 0 0 0 rgba(0,0,0,0), 0 0 0 rgba(0,0,0,0);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.3s ease-out, 
+              border-radius 0.3s ease-out, 
+              background 0.3s ease-out;
+  cursor: pointer;
+}
+
+header nav:hover {
+  transform: rotate(-2deg) scale(1.02);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1), 6px 6px 0px rgba(255,255,255,0.4), -6px -6px 0px rgba(255,255,255,0.1);
+  border-radius: 10px;
+  border-color: transparent;
+  background: rgba(10, 10, 10, 0.8);
+}
+
+header nav:active {
+  transform: rotate(-1deg) scale(0.98);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2), 3px 3px 0px rgba(255,255,255,0.3), -3px -3px 0px rgba(255,255,255,0.05);
+  background: rgba(20, 20, 20, 0.9);
 }
 
 nav a {
+  font-family: 'Silkscreen', cursive;
   color: #fff;
   text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
 }
 
-nav a:hover {
-  opacity: 0.6;
-  transform: translateY(-2px);
+header nav a:hover {
+  color: #00ef33 !important;
+  transform: translateY(-4px) rotate(4deg) scale(1.1);
+  text-shadow: 2px 2px 0px #ff0055;
+}
+
+header nav a:active {
+  transform: scale(0.95);
+  filter: brightness(1.2);
 }
 
 /* Hero Section */
@@ -167,6 +194,20 @@ nav a:hover {
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 20;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-badge:hover {
+  transform: translateY(-50%) scale(1.1) rotate(5deg);
+  background: #0044ff;
+  border-radius: 8px;
+  box-shadow: 6px 6px 0px #ff0055;
+}
+
+.floating-badge:hover .badge-content span {
+  font-family: 'Silkscreen', cursive;
+  color: #fff;
+  font-size: 1.1rem;
 }
 
 .badge-content {
