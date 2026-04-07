@@ -40,12 +40,13 @@ if (textElement) {
       .set("#main", { visibility: "visible" })
       
       // SVG curved transition animation
+      .add("revealStart")
       // Middle point: short curved arc
       .to("#transition-path", {
         attr: { d: "M 0 0 L 100 0 L 100 80 Q 50 100 0 80 Z" },
         duration: 0.25,
         ease: "power2.in"
-      })
+      }, "revealStart")
       // End point: straight line at top (hidden)
       .to("#transition-path", {
         attr: { d: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z" },
@@ -55,11 +56,11 @@ if (textElement) {
       .set("#loader", { display: "none" }) // completely hide loader wrapper
       
       // Hero element entry animations
-      .from("header", { y: -30, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.2")
-      .from(".hero-bg img", { scale: 1.1, opacity: 0, filter: "blur(5px)", duration: 1.5, ease: "power3.out" }, "-=0.6")
-      .from(".floating-badge", { x: -30, opacity: 0, duration: 1, ease: "power3.out" }, "-=1.2")
-      .from(".role-text", { x: 30, opacity: 0, duration: 1, ease: "power3.out" }, "-=1.2")
-      .from(".marquee", { y: 50, opacity: 0, duration: 1, ease: "power3.out" }, "-=1");
+      .from("header", { y: -30, opacity: 0, duration: 1, ease: "power3.out" }, "revealStart")
+      .from(".hero-bg img", { scale: 1.1, opacity: 0, filter: "blur(5px)", duration: 1.5, ease: "power3.out" }, "revealStart")
+      .from(".floating-badge", { x: -30, opacity: 0, duration: 1, ease: "power3.out" }, "revealStart+=0.2")
+      .from(".role-text", { x: 30, opacity: 0, duration: 1, ease: "power3.out" }, "revealStart+=0.2")
+      .from(".marquee", { y: 50, opacity: 0, duration: 1, ease: "power3.out" }, "revealStart+=0.4");
       
     }, 2000); // 2 seconds delay
   };
@@ -89,3 +90,15 @@ gsap.to(".marquee-inner", {
   duration: 15,
   repeat: -1
 });
+
+// --- Navigation Smooth Scroll Fix for Fixed Footer ---
+const contactLink = document.querySelector('a[href="#contact"]');
+if (contactLink) {
+  contactLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+  });
+}
